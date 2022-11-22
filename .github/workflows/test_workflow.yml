@@ -1,0 +1,14 @@
+name: Run frontend client smoke tests
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  check-github-timestamp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: check timestamp
+        run: |
+          python3 check_timestamp.py ${{ github.event.repository.updated_at}}
