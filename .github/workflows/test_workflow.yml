@@ -1,8 +1,5 @@
-name: Run frontend client smoke tests
-on: 
-  push:
-    branches:
-      - master
+name: Run tests
+on: [repository_dispatch]
 
 jobs:
   check-github-timestamp:
@@ -11,4 +8,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: check timestamp
         run: |
-          python3 check_timestamp.py ${{ github.event.repository.updated_at}}
+          python3 check_timestamp.py ${{ github.event.client_payload.commit_timestamp }}
